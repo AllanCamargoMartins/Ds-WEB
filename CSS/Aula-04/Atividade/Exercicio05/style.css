@@ -1,0 +1,9 @@
+.cartao {
+    width: 200px;
+    height: 250px;
+    padding: 15px;
+    margin: 10px;
+    display: inline-block;
+    background: lightyellow;
+    border: 1px solid #ccc;
+  }

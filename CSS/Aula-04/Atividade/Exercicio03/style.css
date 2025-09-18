@@ -1,0 +1,9 @@
+.menu div {
+    display: inline-block;
+    width: 120px;
+    height: 40px;
+    margin: 5px;
+    background: grey;
+    text-align: center;
+    line-height: 40px;
+  }
