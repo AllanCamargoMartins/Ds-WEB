@@ -40,7 +40,7 @@ body {
   .div8 { background: blueviolet; border-style: dotted; }
   .div9 { background: blue; }
 
-  /* Efeito hover */
+  
   .box:hover {
     color: white;
   }
