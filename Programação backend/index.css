@@ -9,7 +9,7 @@
 /* Fundo da página */
 body {
     min-height: 100vh;
-    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    background: linear-gradient(135deg, black, black, #2c5364);
 
     display: flex;
     flex-direction: column;
@@ -25,7 +25,7 @@ h1 {
     margin-bottom: 25px;
     text-align: center;
 
-    background: linear-gradient(90deg, #00c6ff, #0072ff);
+    background: linear-gradient(90deg, whitesmoke, whitesmoke);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -37,7 +37,7 @@ a {
     padding: 12px 28px;
     border-radius: 8px;
 
-    background-color: #00c6ff;
+    background-color: whitesmoke;
     color: #0f2027;
     font-weight: bold;
 
@@ -46,7 +46,7 @@ a {
 
 /* Hover no link */
 a:hover {
-    background-color: #0072ff;
+    background-color: gray;
     color: #fff;
     transform: translateY(-3px);
 }
