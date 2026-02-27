@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reptile Keyboard Control - Screaming Death</title>
+    <style>
+        body { margin: 0; background: #050505; overflow: hidden; font-family: sans-serif; }
+        canvas { display: block; }
+        .controls { position: fixed; top: 10px; left: 10px; color: white; opacity: 0.5; pointer-events: none; }
+    </style>
+</head>
+<body>
+    <div class="controls">Use WASD ou Setas para mover</div>
+    <canvas id="canvas"></canvas>
+
+<script>
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
+
+let width, height;
+const numPoints = 40;
+const points = [];
+const segmentDist = 12;
+const fireParticles = [];
+
+// Estado do movimento
+const keys = { w: false, a: false, s: false, d: false, ArrowUp: false, ArrowDown: false, ArrowLeft: false, ArrowRight: false };
+const player = {
+    x: window.innerWidth / 2,
+    y: window.innerHeight / 2,
+    vx: 0,
+    vy: 0,
+    speed: 0.8,
+    friction: 0.92
+};
+
+class Point {
+    constructor(x, y) {
+        this.x = x;
+        this.y = y;
+    }
+}
+
+function init() {
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
+    points.length = 0; // Limpa array se redimensionar
+    for (let i = 0; i < numPoints; i++) {
+        points.push(new Point(width / 2, height / 2));
+    }
+}
+
+// Eventos de teclado
+window.addEventListener("keydown", (e) => { if (keys.hasOwnProperty(e.key)) keys[e.key] = true; });
+window.addEventListener("keyup", (e) => { if (keys.hasOwnProperty(e.key)) keys[e.key] = false; });
+
+function update() {
+    // 1. Lógica de aceleração baseada nas teclas
+    if (keys.w || keys.ArrowUp) player.vy -= player.speed;
+    if (keys.s || keys.ArrowDown) player.vy += player.speed;
+    if (keys.a || keys.ArrowLeft) player.vx -= player.speed;
+    if (keys.d || keys.ArrowRight) player.vx += player.speed;
+
+    // 2. Aplicar fricção (para não deslizar infinitamente)
+    player.vx *= player.friction;
+    player.vy *= player.friction;
+
+    // 3. Atualizar posição da "cabeça"
+    player.x += player.vx;
+    player.y += player.vy;
+
+    // Bordas da tela
+    if (player.x < 0) player.x = 0;
+    if (player.x > width) player.x = width;
+    if (player.y < 0) player.y = 0;
+    if (player.y > height) player.y = height;
+
+    // 4. Cinemática Inversa (corpo segue a cabeça)
+    points[0].x = player.x;
+    points[0].y = player.y;
+
+    for (let i = 1; i < numPoints; i++) {
+        const p1 = points[i - 1];
+        const p2 = points[i];
+        
+        const dx = p2.x - p1.x;
+        const dy = p2.y - p1.y;
+        const angle = Math.atan2(dy, dx);
+        
+        p2.x = p1.x + Math.cos(angle) * segmentDist;
+        p2.y = p1.y + Math.sin(angle) * segmentDist;
+    }
+
+    // Lógica de partículas (rastro de poeira/fogo ao mover)
+    if (Math.abs(player.vx) + Math.abs(player.vy) > 2) {
+        fireParticles.push({
+            x: points[numPoints-1].x, // Sai da cauda
+            y: points[numPoints-1].y,
+            vx: (Math.random() - 0.5) * 2,
+            vy: (Math.random() - 0.5) * 2,
+            life: 0.6
+        });
+    }
+}
+
+function draw() {
+    ctx.fillStyle = "rgba(5, 5, 5, 0.3)"; // Efeito de rastro leve
+    ctx.fillRect(0, 0, width, height);
+
+    // Desenhar Partículas
+    fireParticles.forEach((p, i) => {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.life * 5, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(150, 150, 150, ${p.life})`;
+        ctx.fill();
+        p.x += p.vx; p.y += p.vy;
+        p.life -= 0.02;
+        if(p.life <= 0) fireParticles.splice(i, 1);
+    });
+
+    ctx.strokeStyle = "white";
+    
+    for (let i = 0; i < points.length; i++) {
+        const p = points[i];
+        
+        if (i > 0 && i < points.length - 5) {
+            const dx = points[i].x - points[i-1].x;
+            const dy = points[i].y - points[i-1].y;
+            const angle = Math.atan2(dy, dx) + Math.PI / 2;
+            const bodyWidth = Math.sin((i / numPoints) * Math.PI) * 20 + 3;
+
+            ctx.lineWidth = 1.5;
+            ctx.beginPath();
+            ctx.moveTo(p.x + Math.cos(angle) * bodyWidth, p.y + Math.sin(angle) * bodyWidth);
+            ctx.lineTo(p.x - Math.cos(angle) * bodyWidth, p.y - Math.sin(angle) * bodyWidth);
+            ctx.stroke();
+        }
+
+        if (i === 0) {
+            // Cabeça
+            ctx.fillStyle = "white";
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, 10, 0, Math.PI * 2);
+            ctx.fill();
+            // Olhos
+            ctx.fillStyle = "red";
+            ctx.beginPath();
+            ctx.arc(p.x - 3, p.y - 2, 2, 0, Math.PI * 2);
+            ctx.arc(p.x + 3, p.y - 2, 2, 0, Math.PI * 2);
+            ctx.fill();
+        }
+    }
+}
+
+function loop() {
+    update();
+    draw();
+    requestAnimationFrame(loop);
+}
+
+init();
+loop();
+window.onresize = init;
+</script>
+</body>
+</html>
