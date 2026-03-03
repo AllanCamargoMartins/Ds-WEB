@@ -3,7 +3,7 @@ abstract class Produto {
     public $nome;
     public $preco;
     protected $estoque;
-    public function __construct($nome, $preco, $estoque){
+    public function ($nome, $preco, $estoque){
         $this->nome = $nome;
         $this->preco = $preco;
         $this->estoque = $estoque;
