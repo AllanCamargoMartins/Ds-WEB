@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="style.css" rel="stylesheet">
+<title>Formulário-Validação JS</title>
+</head>
+<body>
+<h1>Formulário de Cadastro</h1>
+<form id="formulario">
+
+<div class="input-group">
+<i class="fa fa-user"></i>
+<label for="nome">Nome:</label>
+<input type="text" id="nome" name="nome" placeholder="Ex: Maria Silva">
+<span id="erro-nome"></span>
+</div>
+
+<div class="input-group">
+<i class="fa fa-envelope"></i>
+<label for="email">E-mail:</label>
+<input type="text" id="email" name="email" placeholder="Ex: maria@email.com">
+<span id="erro-email"></span>
+</div>
+
+<div class="input-group">
+<i class="fa fa-lock"></i>
+<label for="senha">Senha:</label>
+<input type="password" id="senha" name="senha" placeholder="Mínimo 8 caracteres">
+<span id="erro-senha"></span>
+</div>
+
+<div class="input-group">
+<i class="fa fa-lock"></i>
+<label for="confirma-senha">Confirmar senha:</label>
+<input type="password" id="confirma-senha" name="confirma-senha" placeholder="Repita a senha">
+<span id="erro-confirma-senha"></span>
+</div>
+
+<div class="input-group">
+<i class="fa fa-id-card"></i>
+<label for="cpf">CPF:</label>
+<input type="text" id="cpf" name="cpf" placeholder="Ex: 000.000.000-00" maxlength="14">
+<span id="erro-cpf"></span>
+</div>
+
+<div class="input-group">
+<i class="fa fa-phone"></i>
+<label for="telefone">Telefone:</label>
+<input type="text" id="telefone" name="telefone" placeholder="Ex: (11) 99999-9999" maxlength="15">
+<span id="erro-telefone"></span>
+</div>
+
+<div class="input-group">
+<i class="fa fa-map-marker-alt"></i>
+<label for="cep">CEP:</label>
+<input type="text" id="cep" name="cep" placeholder="Ex: 01310-100" maxlength="9">
+<span id="erro-cep"></span>
+</div>
+
+<div class="input-group">
+<i class="fa fa-calendar"></i>
+<label for="data-nascimento">Data:</label>
+<input type="text" id="data-nascimento" name="data-nascimento" placeholder="Ex: 31/12/1990" maxlength="10">
+<span id="erro-data-nascimento"></span>
+</div>
+
+<div class="input-group">
+<i class="fa fa-dollar-sign"></i>
+<label for="valor">Valor:</label>
+<input type="text" id="valor" name="valor" placeholder="Ex: 1.299,90">
+<span id="erro-valor"></span>
+</div>
+
+<div class="input-group">
+<i class="fa fa-link"></i>
+<label for="url">URL:</label>
+<input type="text" id="url" name="url" placeholder="Ex: https://meusite.com.br">
+<span id="erro-url"></span>
+</div>
+
+<div class="input-group">
+<i class="fa fa-credit-card"></i>
+<label for="cartao">Número do cartão:</label>
+
+<div class="cartao-container">
+
+<input 
+type="text" 
+id="cartao" 
+name="cartao" 
+placeholder="Ex: 4111 1111 1111 1111" 
+maxlength="19"
+>
+
+<img id="bandeira-img" class="bandeira-cartao">
+
+</div>
+
+<span id="erro-cartao"></span>
+
+</div>
+</div>
+
+<div class="botoes">
+<button type="submit">Enviar</button>
+<button type="reset">Limpar</button>
+</div>
+
+</form>
+<hr>
+<div id="resultado"></div>
+</body>
+<script src="script.js"></script>
+</html>
