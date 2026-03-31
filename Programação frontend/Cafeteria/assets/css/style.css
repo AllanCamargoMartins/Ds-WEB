@@ -1,0 +1,156 @@
+/* ===== RESET ===== */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', Arial, sans-serif;
+  background: #1e293b; /* fundo elegante */
+  color: #e2e8f0;
+}
+
+/* ===== TITULOS ===== */
+h2, h3 {
+  text-align: center;
+  margin-bottom: 15px;
+  color: #f8fafc;
+}
+
+/* ===== MENU ===== */
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background: #0f172a;
+  display: flex;
+  justify-content: center;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.4);
+}
+
+ul li a {
+  display: block;
+  color: #cbd5f5;
+  padding: 15px 20px;
+  text-decoration: none;
+  transition: 0.3s;
+  font-weight: 500;
+}
+
+ul li a:hover {
+  color: #60a5fa;
+  border-bottom: 2px solid #60a5fa;
+}
+
+/* ===== FORM ===== */
+.formulario {
+  width: 500px;
+  margin: 40px auto;
+  padding: 25px;
+  background: #0f172a;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+}
+
+/* LABEL */
+label {
+  display: block;
+  margin-top: 10px;
+  font-size: 14px;
+  color: #94a3b8;
+}
+
+/* INPUT */
+input[type=text], select {
+  width: 100%;
+  padding: 12px;
+  margin-top: 5px;
+  border-radius: 8px;
+  border: 1px solid #334155;
+  background: #1e293b;
+  color: white;
+  transition: 0.3s;
+}
+
+input:focus, select:focus {
+  border-color: #60a5fa;
+  box-shadow: 0 0 8px rgba(96,165,250,0.3);
+  outline: none;
+}
+
+/* ===== BOTÃO ===== */
+.button {
+  margin-top: 15px;
+  padding: 10px 15px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+  font-weight: bold;
+}
+
+.button-enviar {
+  background: #3b82f6;
+  color: white;
+}
+
+.button-enviar:hover {
+  background: #2563eb;
+  transform: scale(1.05);
+}
+
+/* ===== TABELA ===== */
+.tabela {
+  width: 800px;
+  margin: 30px auto;
+  background: #0f172a;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+  text-align: center;
+}
+
+/* TABELA */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* CABEÇALHO */
+th {
+  background: #3b82f6;
+  color: white;
+  padding: 12px;
+  text-align: center;
+}
+
+/* TITULO DA TABELA (quando usar colspan) */
+th[colspan] {
+  font-size: 18px;
+  background: #2563eb;
+  text-align: center;
+}
+
+/* DADOS */
+td {
+  padding: 10px;
+  border-bottom: 1px solid #334155;
+  text-align: center;
+}
+
+/* HOVER */
+tr:hover {
+  background: #1e293b;
+}
+
+/* ===== BOTÃO DELETE ===== */
+button {
+  background: #ef4444;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #dc2626;
+}
