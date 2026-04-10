@@ -1,156 +1,258 @@
-/* ===== RESET ===== */
+/* MODERN PREMIUM CAFETERIA DESIGN - LIGHT THEME */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap');
+
+:root {
+  --bg-color: #fdfaf6;
+  --text-color: #3c2a21;
+  --primary-color: #8b5e34;
+  --primary-hover: #6f4e37;
+  --accent-color: #d7ba8d;
+  --surface-color: #ffffff;
+  --border-color: #e6d5c5;
+  --shadow: 0 10px 30px rgba(60, 42, 33, 0.08);
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ===== RESET & BASE ===== */
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   padding: 0;
   font-family: 'Poppins', Arial, sans-serif;
-  background: #1e293b; /* fundo elegante */
-  color: #e2e8f0;
+  background-color: var(--bg-color);
+  background-image: linear-gradient(rgba(253, 250, 246, 0.85), rgba(253, 250, 246, 0.85)), url('../img/bg_cafe.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  color: var(--text-color);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* ===== TITULOS ===== */
-h2, h3 {
+/* ===== TITLES ===== */
+h1, h2, h3 {
+  font-family: 'Playfair Display', serif;
   text-align: center;
-  margin-bottom: 15px;
-  color: #f8fafc;
+  margin-bottom: 20px;
+  color: var(--text-color);
+  letter-spacing: -0.01em;
 }
 
-/* ===== MENU ===== */
+h1 {
+  font-size: 2.5rem;
+  margin-top: 40px;
+  font-weight: 700;
+}
+
+h3 {
+  font-size: 1.8rem;
+  font-weight: 400;
+  border-bottom: 1px solid var(--accent-color);
+  display: inline-block;
+  padding-bottom: 5px;
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+
+/* ===== NAVIGATION MENU ===== */
 ul {
   list-style: none;
   margin: 0;
   padding: 0;
-  background: #0f172a;
+  background: var(--surface-color);
   display: flex;
   justify-content: center;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.4);
+  box-shadow: 0 2px 15px rgba(0,0,0,0.03);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 1px solid var(--border-color);
 }
 
 ul li a {
   display: block;
-  color: #cbd5f5;
-  padding: 15px 20px;
+  color: var(--text-color);
+  padding: 18px 25px;
   text-decoration: none;
-  transition: 0.3s;
+  transition: var(--transition);
   font-weight: 500;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
 }
 
 ul li a:hover {
-  color: #60a5fa;
-  border-bottom: 2px solid #60a5fa;
+  color: var(--primary-color);
 }
 
-/* ===== FORM ===== */
+ul li a::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 2px;
+  background: var(--primary-color);
+  transition: var(--transition);
+  margin-top: 4px;
+}
+
+ul li a:hover::after {
+  width: 100%;
+}
+
+/* ===== FORM CONTAINER ===== */
 .formulario {
-  width: 500px;
-  margin: 40px auto;
-  padding: 25px;
-  background: #0f172a;
-  border-radius: 12px;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+  max-width: 550px;
+  margin: 60px auto;
+  padding: 40px;
+  background: var(--surface-color);
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border-color);
 }
 
-/* LABEL */
+/* LABELS */
 label {
   display: block;
-  margin-top: 10px;
-  font-size: 14px;
-  color: #94a3b8;
+  margin-top: 15px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--primary-color);
+  letter-spacing: 0.05em;
 }
 
-/* INPUT */
-input[type=text], select {
+/* INPUTS & SELECTS */
+input[type=text], 
+input[type=number],
+select {
   width: 100%;
-  padding: 12px;
-  margin-top: 5px;
-  border-radius: 8px;
-  border: 1px solid #334155;
-  background: #1e293b;
-  color: white;
-  transition: 0.3s;
+  padding: 14px 16px;
+  margin-top: 8px;
+  border-radius: 12px;
+  border: 1.5px solid var(--border-color);
+  background: #fff;
+  color: var(--text-color);
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  transition: var(--transition);
 }
 
 input:focus, select:focus {
-  border-color: #60a5fa;
-  box-shadow: 0 0 8px rgba(96,165,250,0.3);
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 4px rgba(139, 94, 52, 0.1);
   outline: none;
 }
 
-/* ===== BOTÃO ===== */
+/* ===== BUTTONS ===== */
 .button {
-  margin-top: 15px;
-  padding: 10px 15px;
-  border-radius: 8px;
+  display: block;
+  width: 100%;
+  margin-top: 25px;
+  padding: 15px;
+  border-radius: 12px;
   border: none;
   cursor: pointer;
-  transition: 0.3s;
-  font-weight: bold;
+  transition: var(--transition);
+  font-weight: 600;
+  font-size: 1rem;
+  font-family: 'Poppins', sans-serif;
 }
 
 .button-enviar {
-  background: #3b82f6;
-  color: white;
+  background: var(--primary-color);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(139, 94, 52, 0.2);
 }
 
 .button-enviar:hover {
-  background: #2563eb;
+  background: var(--primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(139, 94, 52, 0.3);
+}
+
+.button-enviar:active {
+  transform: translateY(0);
+}
+
+/* ===== TABLES ===== */
+.tabela {
+  max-width: 900px;
+  margin: 40px auto 80px;
+  background: var(--surface-color);
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border-color);
+}
+
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+}
+
+th {
+  background: var(--bg-color);
+  color: var(--primary-color);
+  padding: 16px;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-align: center;
+  border-bottom: 2px solid var(--accent-color);
+}
+
+th[colspan] {
+  font-size: 1.4rem;
+  background: var(--surface-color);
+  padding: 20px;
+  color: var(--text-color);
+}
+
+td {
+  padding: 16px;
+  border-bottom: 1px solid rgba(230, 213, 197, 0.5);
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+tr:hover td {
+  background: rgba(215, 186, 141, 0.05);
+}
+
+/* ===== ACTION BUTTONS (DELETE) ===== */
+button:not(.button) {
+  background: transparent;
+  color: #e53e3e;
+  border: 1.5px solid #feb2b2;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+button:not(.button):hover {
+  background: #fff5f5;
+  border-color: #e53e3e;
+  color: #c53030;
   transform: scale(1.05);
 }
 
-/* ===== TABELA ===== */
-.tabela {
-  width: 800px;
-  margin: 30px auto;
-  background: #0f172a;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.5);
-  text-align: center;
-}
-
-/* TABELA */
-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-/* CABEÇALHO */
-th {
-  background: #3b82f6;
-  color: white;
-  padding: 12px;
-  text-align: center;
-}
-
-/* TITULO DA TABELA (quando usar colspan) */
-th[colspan] {
-  font-size: 18px;
-  background: #2563eb;
-  text-align: center;
-}
-
-/* DADOS */
-td {
-  padding: 10px;
-  border-bottom: 1px solid #334155;
-  text-align: center;
-}
-
-/* HOVER */
-tr:hover {
-  background: #1e293b;
-}
-
-/* ===== BOTÃO DELETE ===== */
-button {
-  background: #ef4444;
-  color: white;
-  border: none;
-  padding: 6px 12px;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-button:hover {
-  background: #dc2626;
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .formulario, .tabela {
+    width: 90%;
+    padding: 20px;
+  }
 }
