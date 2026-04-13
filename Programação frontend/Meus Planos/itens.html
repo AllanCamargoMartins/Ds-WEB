@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veículos | Meus Planos</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap"
+        rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Início</a></li>
+            <li><a href="itens.html" class="active">Veículos</a></li>
+            <li><a href="categorias.html">Categorias</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero">
+        <h1>Veículos Desejados</h1>
+    </header>
+
+    <section class="formulario">
+        <h3>Adicionar Novo Veículo</h3>
+
+        <div class="input-group">
+            <label for="nome">Modelo do Veículo</label>
+            <input type="text" id="nome">
+        </div>
+
+        <div class="input-group">
+            <label for="categoria_id">Categoria</label>
+            <select id="categoria_id">
+                <option value="">Carregando categorias...</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label for="preco">Preço Estimado (R$)</label>
+            <input type="text" id="preco" placeholder="0,00">
+        </div>
+
+
+
+
+        <button type="button" id="botaoEnviar" class="btn btn-primary">Adicionar à Lista</button>
+    </section>
+
+    <div id="resposta" class="tabela">
+        <!-- Itens serão gerados pelo JS no estilo Grid de Veículos -->
+    </div>
+
+    <script src="./assets/js/itens.js"></script>
+</body>
+
+</html>

@@ -15,12 +15,16 @@ document.getElementById('botaoAdicionar').addEventListener('click', postPedidoIt
 async function carregarProdutos() {
     let req = await fetch("http://localhost/cafeteria-api/produtos");
     let res = await req.json();
-    res.data.forEach(p => {
-        let opt = document.createElement("option");
-        opt.value = p.id;
-        opt.text = p.nome + " - R$ " + p.preco;
-        selectProduto.add(opt);
-    });
+    
+    selectProduto.innerHTML = '<option value="">Selecione um produto</option>';
+    if (res.data) {
+        res.data.forEach(p => {
+            let opt = document.createElement("option");
+            opt.value = p.id;
+            opt.text = p.nome + " - R$ " + parseFloat(p.preco).toFixed(2);
+            selectProduto.add(opt);
+        });
+    }
 }
 
 async function getPedidoItens() {
@@ -30,10 +34,10 @@ async function getPedidoItens() {
     const linhas = (resposta.data || []).map(item => `
         <tr>
             <td>${item.id}</td>
-            <td>Produto ${item.produto_id}</td>
+            <td>Item #${item.produto_id}</td>
             <td>${item.quantidade}</td>
-            <td>R$ ${item.preco}</td>
-            <td><button onclick="deletePedidoItem(${item.id})">Remover</button></td>
+            <td>R$ ${parseFloat(item.preco).toFixed(2)}</td>
+            <td><button onclick="deletePedidoItem(${item.id})" class="button button-deletar">Remover</button></td>
         </tr>
     `).join("");
     
@@ -43,7 +47,7 @@ async function getPedidoItens() {
                 <tr><th colspan="5"><center>Itens do Pedido #${pedidoId}</center></th></tr>
                 <tr><th>ID</th><th>Produto</th><th>Qtd</th><th>Preço</th><th>Opções</th></tr>
             </thead>
-            <tbody>${linhas || '<tr><td colspan="5"><center>Vazio</center></td></tr>'}</tbody>
+            <tbody>${linhas || '<tr><td colspan="5"><center>Nenhum item adicionado ainda.</center></td></tr>'}</tbody>
         </table>
     `;
 }

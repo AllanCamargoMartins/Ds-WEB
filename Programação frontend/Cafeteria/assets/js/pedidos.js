@@ -10,20 +10,24 @@ async function getPedidos() {
     var requisicao = await fetch("http://localhost/cafeteria-api/pedidos")
     var resposta = await requisicao.json()
 
+    if (resposta.status === 'error') {
+        divResposta.innerHTML = `<p style="color:red">${resposta.message}</p>`;
+        return;
+    }
+
     console.log(resposta)
 
-    const linhas = resposta.data.map(item => `
+    const linhas = (resposta.data || []).map(item => `
         <tr>
             <td>${item.id}</td>
             <td>${item.cliente}</td>
-            <td>${item.criado_em}</td>
-            <td>${item.total}</td>
-            <td><button onclick="deletePedido(${item.id})">Deletar</button></td>
-            <td><button onclick="updatePedido(${item.id})">Editar</button></td>
+            <td>${new Date(item.criado_em).toLocaleDateString()}</td>
+            <td>R$ ${parseFloat(item.total || 0).toFixed(2)}</td>
+            <td><button onclick="updatePedido(${item.id})" class="button button-edit">Visualizar</button></td>
+            <td><button onclick="deletePedido(${item.id})" class="button button-deletar">Deletar</button></td>
         </tr>
     `).join("");
 
-    console.log(linhas)
     divResposta.innerHTML = `
         <table class="sua-classe">
             <thead>
@@ -32,14 +36,14 @@ async function getPedidos() {
                 </tr>
                 <tr>
                     <th>ID</th>
-                    <th>Nome</th>
+                    <th>Cliente</th>
                     <th>Data</th>
-                    <th>Preço</th>
-                    <th colspan="2">Opções</th>
+                    <th>Total</th>
+                    <th colspan="2">Ações</th>
                 </tr>
             </thead>
             <tbody>
-                ${linhas}
+                ${linhas || '<tr><td colspan="6"><center>Nenhum pedido encontrado</center></td></tr>'}
             </tbody>
         </table>
     `;

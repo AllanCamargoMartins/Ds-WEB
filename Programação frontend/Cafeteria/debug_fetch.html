@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Debug Fetch</title>
+</head>
+<body>
+    <h1>Debug Fetch</h1>
+    <div id="output">Iniciando teste...</div>
+    <script>
+        async function test() {
+            const out = document.getElementById('output');
+            try {
+                out.innerHTML += "<br>Tentando fetch http://localhost/cafeteria-api/produtos ...";
+                const res = await fetch("http://localhost/cafeteria-api/produtos");
+                out.innerHTML += "<br>Status: " + res.status;
+                const json = await res.json();
+                out.innerHTML += "<br>JSON recebido: " + JSON.stringify(json);
+            } catch (e) {
+                out.innerHTML += "<br>ERRO: " + e.message;
+            }
+        }
+        test();
+    </script>
+</body>
+</html>

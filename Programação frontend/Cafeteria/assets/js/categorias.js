@@ -10,14 +10,19 @@ async function getCategorias() {
     var requisicao = await fetch("http://localhost/cafeteria-api/categorias")
     var resposta = await requisicao.json()
 
+    if (resposta.status === 'error') {
+        divResposta.innerHTML = `<p style="color:red">${resposta.message}</p>`;
+        return;
+    }
+
     console.log(resposta)
 
     // Gera as linhas automaticamente para todos os itens do array
-    const linhas = resposta.data.map(item => `
+    const linhas = (resposta.data || []).map(item => `
         <tr>
             <td>${item.id}</td>
             <td>${item.nome}</td>
-            <td><button onclick="deleteCategoria(${item.id})">Deletar</button></td>
+            <td><button onclick="deleteCategoria(${item.id})" class="button button-deletar">Deletar</button></td>
         </tr>
     `).join("");
     
@@ -35,7 +40,7 @@ async function getCategorias() {
                 </tr>
             </thead>
             <tbody>
-                ${linhas}
+                ${linhas || '<tr><td colspan="3"><center>Nenhuma categoria cadastrada</center></td></tr>'}
             </tbody>
         </table>
     `;
@@ -46,6 +51,9 @@ async function getCategorias() {
 async function postCategoria() {
     var requisicao = await fetch("http://localhost/cafeteria-api/categorias", {
         method:  "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
         body:    JSON.stringify({ nome: inputNome.value })
     })
 

@@ -38,7 +38,7 @@ switch ($method) {
         }
 
         $database->executeQuery(
-            'INSERT INTO pedidos(cliente) VALUES (:nome)',
+            'INSERT INTO pedidos(cliente, total) VALUES (:nome, 0)',
             ['nome' => $nome]
         );
 

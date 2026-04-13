@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categorias | Meus Planos</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap"
+        rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Início</a></li>
+            <li><a href="itens.html">Veículos</a></li>
+            <li><a href="categorias.html" class="active">Categorias</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero">
+        <h1>O que desejo comprar no futuro?</h1>
+    </header>
+
+    <section class="formulario">
+        <h3>Nova Categoria</h3>
+        <div class="input-group">
+            <label for="nome">Nome da Categoria</label>
+            <input type="text" id="nome" placeholder="Ex: Carros esportivos, Motos de trilha...">
+        </div>
+        <button type="button" id="botaoEnviar" class="btn btn-primary">Adicionar Categoria</button>
+    </section>
+
+    <div id="resposta" class="tabela">
+        <!-- Tabela será gerada pelo JS -->
+    </div>
+
+    <script src="./assets/js/categorias.js"></script>
+</body>
+
+</html>

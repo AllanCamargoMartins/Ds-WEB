@@ -6,24 +6,42 @@ var inputCategoria   = document.getElementById("categoria_id")
 var inputDisponivel   = document.getElementById("disponivel")
 
 
-document.addEventListener('DOMContentLoaded', getProdutos)
+document.addEventListener('DOMContentLoaded', () => {
+    getProdutos();
+    getgetCategorias();
+})
 document.getElementById('botaoEnviar').addEventListener('click', postProduto)
+
+async function getgetCategorias() {
+    var requisicao = await fetch("http://localhost/cafeteria-api/categorias")
+    var resposta = await requisicao.json()
+    
+    inputCategoria.innerHTML = '<option value="">Selecione uma categoria</option>';
+    resposta.data.forEach(item => {
+        inputCategoria.innerHTML += `<option value="${item.id}">${item.nome}</option>`;
+    });
+}
 
 async function getProdutos() {
     var requisicao = await fetch("http://localhost/cafeteria-api/produtos")
     var resposta = await requisicao.json()
 
+    if (resposta.status === 'error') {
+        divResposta.innerHTML = `<p style="color:red">${resposta.message}</p>`;
+        return;
+    }
+
     console.log(resposta)
 
     // Gera as linhas automaticamente para todos os itens do array
-    const linhas = resposta.data.map(item => `
+    const linhas = (resposta.data || []).map(item => `
         <tr>
             <td>${item.id}</td>
             <td>${item.nome}</td>
-            <td>${item.preco}</td>
-            <td>${item.categoria_id}</td>
-            <td>${item.disponivel}</td>
-            <td><button onclick="deleteProduto(${item.id})">Deletar</button></td>
+            <td>R$ ${parseFloat(item.preco).toFixed(2)}</td>
+            <td>ID: ${item.categoria_id}</td>
+            <td>${item.disponivel == 1 ? '✅ Sim' : '❌ Não'}</td>
+            <td><button onclick="deleteProduto(${item.id})" class="button button-deletar">Deletar</button></td>
         </tr>
     `).join("");
    
@@ -38,13 +56,13 @@ async function getProdutos() {
                     <th>ID</th>
                     <th>Nome</th>
                     <th>Preço</th>
-                    <th>Categorias</th>
-                    <th>Disponível</th>
+                    <th>Cat.</th>
+                    <th>Disp.</th>
                     <th>Opções</th>
                 </tr>
             </thead>
             <tbody>
-                ${linhas}
+                ${linhas || '<tr><td colspan="6"><center>Nenhum produto cadastrado</center></td></tr>'}
             </tbody>
         </table>
     `;

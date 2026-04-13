@@ -1,0 +1,423 @@
+/* PREMIUM VEHICLE PLANS - CLEAN LIGHT GLASS THEME */
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap');
+
+:root {
+  --bg-light: #f8fafc;
+  --bg-card: rgba(255, 255, 255, 0.15);
+  /* Clean Glass transparency */
+  --accent: #0ea5e9;
+  --accent-hover: #0284c7;
+  --text-main: #0f172a;
+  --text-dim: #475569;
+  --glass-border: rgba(255, 255, 255, 0.4);
+  --glass-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.05);
+  --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background-color: var(--bg-light);
+  background-image:
+    linear-gradient(rgba(248, 250, 252, 0.6), rgba(248, 250, 252, 0.8)),
+    url('../img/Gemini_Generated_Image_36gfrr36gfrr36gf.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  color: var(--text-main);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* ===== NAVIGATION ===== */
+nav {
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  background: rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid var(--glass-border);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  padding: 10px 0;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+}
+
+nav ul li a {
+  color: var(--text-dim);
+  text-decoration: none;
+  padding: 12px 24px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: var(--transition);
+  position: relative;
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+  color: var(--accent);
+}
+
+nav ul li a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--accent);
+  transition: var(--transition);
+  transform: translateX(-50%);
+}
+
+nav ul li a:hover::after,
+nav ul li a.active::after {
+  width: 30px;
+}
+
+/* ===== HERO SECTION ===== */
+.hero {
+  text-align: center;
+  padding: 80px 20px 40px;
+  animation: fadeInDown 1s ease-out;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 3.5rem;
+  margin-bottom: 10px;
+  color: var(--text-main);
+}
+
+.hero p {
+  color: var(--text-dim);
+  font-size: 1.2rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+/* ===== DASHBOARD CARDS ===== */
+.dashboard {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.card {
+  background: var(--bg-card);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 40px;
+  border-radius: 24px;
+  border: 1px solid var(--glass-border);
+  text-align: center;
+  box-shadow: var(--glass-shadow);
+  transition: var(--transition);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.card:hover {
+  transform: translateY(-10px) scale(1.02);
+  border-color: var(--accent);
+  background: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.card .icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 20px;
+  display: block;
+  background-image: url('../img/wheel.png');
+  background-size: cover;
+  background-position: center;
+  border-radius: 50%;
+  border: 2px solid var(--glass-border);
+}
+
+.card h2 {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+  color: var(--text-main);
+}
+
+.card p {
+  color: var(--text-dim);
+}
+
+/* ===== FORMS ===== */
+.formulario {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 40px;
+  background: var(--bg-card);
+  backdrop-filter: blur(25px);
+  border-radius: 24px;
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+}
+
+.formulario h3 {
+  font-size: 2rem;
+  margin-bottom: 30px;
+  text-align: center;
+  color: var(--text-main);
+}
+
+.input-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--text-dim);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 14px 18px;
+  background: rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 12px;
+  color: var(--text-main);
+  font-family: inherit;
+  font-size: 1rem;
+  transition: var(--transition);
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: var(--accent);
+  background: rgba(255, 255, 255, 0.8);
+}
+
+/* ===== BUTTONS ===== */
+.btn {
+  display: inline-block;
+  width: 100%;
+  padding: 16px;
+  border-radius: 12px;
+  border: none;
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: var(--accent-hover);
+  box-shadow: 0 5px 15px rgba(14, 165, 233, 0.3);
+}
+
+.btn-outline {
+  background: transparent;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+}
+
+.btn-danger {
+  background: transparent;
+  border: 1px solid #ef4444;
+  color: #ef4444;
+}
+
+/* ===== TABLES / GRID ===== */
+.tabela {
+  max-width: 1100px;
+  margin: 60px auto;
+  padding: 0 20px;
+}
+
+.vehicle-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 25px;
+}
+
+.vehicle-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid var(--glass-border);
+  transition: var(--transition);
+}
+
+.vehicle-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-5px);
+}
+
+.vehicle-img {
+  width: 100%;
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.status-badge {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  padding: 5px 12px;
+  border-radius: 30px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.status-sonho {
+  background: rgba(14, 165, 233, 0.1);
+  color: var(--accent);
+  border: 1px solid var(--accent);
+}
+
+.status-planejando {
+  background: rgba(234, 179, 8, 0.1);
+  color: #d97706;
+  border: 1px solid #d97706;
+}
+
+.status-comprado {
+  background: rgba(34, 197, 94, 0.1);
+  color: #16a34a;
+  border: 1px solid #16a34a;
+}
+
+.vehicle-info {
+  padding: 25px;
+}
+
+.vehicle-info h4 {
+  font-size: 1.4rem;
+  margin-bottom: 5px;
+  color: var(--text-main);
+}
+
+.vehicle-info .category {
+  color: var(--text-dim);
+  font-size: 0.85rem;
+  margin-bottom: 15px;
+  display: block;
+}
+
+.vehicle-info .price {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.vehicle-actions {
+  display: flex;
+  gap: 10px;
+  padding: 15px 25px 25px;
+}
+
+/* CUSTOM TABLE STYLE IF NEEDED */
+table {
+  width: 100%;
+  background: var(--bg-card);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 20px;
+  border-collapse: collapse;
+  overflow: hidden;
+  border: 1px solid var(--glass-border);
+}
+
+th,
+td {
+  padding: 20px;
+  text-align: left;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  color: var(--text-main);
+}
+
+th {
+  color: var(--accent);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+
+  .dashboard {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* CUSTOM CHECKBOX & COMPLETED STATE */
+input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  accent-color: var(--accent);
+  border-radius: 6px;
+  transition: var(--transition);
+}
+
+input[type="checkbox"]:hover {
+  transform: scale(1.1);
+}
+
+tr.item-completed {
+  opacity: 0.5;
+  background: rgba(0, 0, 0, 0.02);
+}
+
+tr.item-completed .vehicle-name,
+tr.item-completed .category-name {
+  text-decoration: line-through;
+  color: var(--text-dim);
+}
+
+tr.item-completed td {
+  border-bottom-color: transparent;
+}
